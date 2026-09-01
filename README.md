@@ -46,6 +46,10 @@ deai-technical-assessment/
 │   ├── customer.html
 │   ├── css/
 │   └── js/
+├── screenshots/
+│   ├── dashboard.png
+│   └── customer-detail.png
+├── .gitignore
 └── README.md
 ```
 
