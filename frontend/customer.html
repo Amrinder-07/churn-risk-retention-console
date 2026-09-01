@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Detail | Retention Console</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar compact-topbar">
+    <div class="shell topbar-content">
+      <div>
+        <p class="eyebrow">Retention Operations</p>
+        <h1>Customer Detail</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell page-space">
+    <a class="back-link" href="index.html">← Back to customer queue</a>
+
+    <div id="detail-loading" class="panel centered-state">Loading customer…</div>
+    <div id="detail-error" class="alert alert-error" role="alert" hidden></div>
+
+    <div id="detail-content" hidden>
+      <section class="detail-header panel">
+        <div>
+          <p class="eyebrow">Customer</p>
+          <h2 id="customer-id">—</h2>
+          <p id="model-note" class="muted"></p>
+        </div>
+        <div class="risk-score-card">
+          <strong id="risk-score">—</strong>
+          <span>/ 100</span>
+          <div id="risk-tier" class="risk-badge large">—</div>
+        </div>
+      </section>
+
+      <div class="detail-layout">
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Explainability</p>
+              <h3>Why this customer is at risk</h3>
+            </div>
+          </div>
+          <div id="risk-factors" class="factor-list"></div>
+        </section>
+
+        <aside class="panel outreach-panel">
+          <p class="eyebrow">Retention action</p>
+          <h3>Outreach</h3>
+          <p>Current status</p>
+          <div id="current-outreach-status" class="status-pill">—</div>
+          <p id="outreach-hint" class="muted"></p>
+          <div id="outreach-error" class="alert alert-error compact-alert" hidden></div>
+          <button id="outreach-action" class="button button-primary button-full" type="button">Update</button>
+        </aside>
+      </div>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Profile</p>
+            <h3>Customer information</h3>
+          </div>
+        </div>
+        <div id="customer-details" class="details-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/customer.js"></script>
+</body>
+</html>

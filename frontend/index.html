@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Churn Risk & Retention Console</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-content">
+      <div>
+        <p class="eyebrow">Retention Operations</p>
+        <h1>Churn Risk & Retention Console</h1>
+      </div>
+      <div class="live-indicator"><span></span> In-memory session</div>
+    </div>
+  </header>
+
+  <main class="shell page-space">
+    <section class="intro-row">
+      <div>
+        <h2>Customer priority queue</h2>
+        <p>Find customers who need attention, understand their risk, and track outreach.</p>
+      </div>
+    </section>
+
+    <div id="error-banner" class="alert alert-error" role="alert" hidden></div>
+
+    <section class="summary-grid" aria-label="Filtered customer summary">
+      <article class="summary-card">
+        <span>Matching customers</span>
+        <strong id="matching-count">—</strong>
+      </article>
+      <article class="summary-card summary-danger">
+        <span>High risk</span>
+        <strong id="high-risk-count">—</strong>
+      </article>
+      <article class="summary-card">
+        <span>Not contacted</span>
+        <strong id="not-contacted-count">—</strong>
+      </article>
+      <article class="summary-card">
+        <span>In progress</span>
+        <strong id="in-progress-count">—</strong>
+      </article>
+    </section>
+
+    <section class="panel filter-panel">
+      <div class="search-row">
+        <label class="search-field">
+          <span>Search customer ID</span>
+          <input id="search" type="search" placeholder="e.g. 7590-VHVEG" autocomplete="off">
+        </label>
+        <button id="search-button" class="button button-primary" type="button">Search</button>
+      </div>
+
+      <div class="filter-grid">
+        <label>
+          <span>Risk tier</span>
+          <select id="risk-tier">
+            <option value="">All risk tiers</option>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Contract</span>
+          <select id="contract">
+            <option value="">All contracts</option>
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Outreach</span>
+          <select id="outreach-status">
+            <option value="">All outreach states</option>
+            <option value="NOT_CONTACTED">Not contacted</option>
+            <option value="IN_PROGRESS">In progress</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Sort</span>
+          <select id="sort">
+            <option value="risk_desc">Risk: highest first</option>
+            <option value="risk_asc">Risk: lowest first</option>
+            <option value="monthly_desc">Monthly charge: highest first</option>
+            <option value="tenure_asc">Tenure: newest first</option>
+          </select>
+        </label>
+      </div>
+
+      <button id="clear-filters" class="button button-ghost" type="button">Clear filters</button>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="table-heading">
+        <div>
+          <h3>Customers</h3>
+          <p>Server-side filtered and paginated. Select a row to review the full profile.</p>
+        </div>
+        <span id="table-status" class="loading-label">Loading customers…</span>
+      </div>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Risk</th>
+              <th>Score</th>
+              <th>Tenure</th>
+              <th>Contract</th>
+              <th>Monthly</th>
+              <th>Outreach</th>
+            </tr>
+          </thead>
+          <tbody id="customer-table-body"></tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button id="previous-page" class="button button-secondary" type="button">Previous</button>
+        <span id="page-label">Page —</span>
+        <button id="next-page" class="button button-secondary" type="button">Next</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
